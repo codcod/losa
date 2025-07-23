@@ -1,0 +1,191 @@
+[project]
+name = "losa"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiofiles>=24.1.0",
+    "alembic>=1.16.4",
+    "asyncpg>=0.30.0",
+    "fastapi>=0.116.1",
+    "greenlet>=3.2.3",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "langchain>=0.3.26",
+    "langchain-community>=0.3.27",
+    "langchain-openai>=0.3.28",
+    "langgraph>=0.5.4",
+    "numpy>=2.3.1",
+    "pandas>=2.3.1",
+    "psycopg2-binary>=2.9.10",
+    "pydantic>=2.11.7",
+    "python-dotenv>=1.1.1",
+    "python-multipart>=0.0.20",
+    "scikit-learn>=1.7.1",
+    "sqlalchemy>=2.0.41",
+    "uvicorn>=0.35.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "mypy>=1.7.0",
+    "pytest-asyncio>=1.1.0",
+    "pytest-cov>=6.2.1",
+    "pytest>=8.4.1",
+]
+
+[tool.pyright]
+pythonVersion = "3.13"
+venv = ".venv"
+venvPath = "."
+typeCheckingMode = "basic" # Options: "off", "basic", "strict"
+
+include = ["src", "tests"]
+
+exclude = ["**/node_modules", "**/__pycache__", "**/*.pyc"]
+
+reportMissingImports = true # Report missing imports
+reportUnusedImports = true  # Report unused imports
+reportUnusedFunction = true # Report unused functions
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+include = '\.pyi?$'
+exclude = '''(
+    /(
+        .git
+        | .mypy_cache
+        | .pytest_cache
+        | build
+        | dist
+    )/
+)'''
+skip-string-normalization = true
+fast = false
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py313"
+exclude = ["docs/**/*.py"]
+
+[tool.ruff.format]
+indent-style = "space"
+line-ending = "auto"
+quote-style = "single"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+# select = ["E4", "E7", "E9", "F", "W", "E", "B", "I", "PL", "C90"]
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+
+fixable = ["ALL"]
+unfixable = ["B"]
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.flake8-bugbear]
+# Allow default arguments like, e.g., `data: List[str] = fastapi.Query(None)`.
+extend-immutable-calls = [
+  "Depends",
+  "fastapi.Depends",
+  "fastapi.params.Depends",
+]
+
+[tool.pytest.ini_options]
+# https://docs.pytest.org/en/latest/reference/customize.html
+minversion = "6.0"
+addopts = [
+  # "-v",
+  # "-q",
+  "--tb=short",  # line, auto, short, long, native, no
+  "--capture=no",
+  "--log-cli-level=INFO",
+  "--import-mode=importlib",
+  "--maxfail=10",
+  # "--disable-warnings",
+  # "--doctest-modules",
+  # "--cov=losa",
+]
+testpaths = ["tests"]
+pythonpath = ["src"]
+log_format = "%(asctime)s [%(levelname)-8s] [%(filename)s:%(lineno)s] %(message)s"
+log_date_format = "%H:%M:%S"
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = [
+  "ignore::DeprecationWarning",
+  "ignore::RuntimeWarning:unittest.mock",
+  "ignore:.*coroutine.*was never awaited.*:RuntimeWarning",
+]
+
+# Reminder:
+# '^file1\.py$',   # TOML literal string (single-quotes, no escaping necessary)
+# "^file2\\.py$",  # TOML basic string (double-quotes, backslash and other characters need escaping
+
+[tool.bandit]
+targets = ["src"]
+exclude_dirs = ["tests", ".venv"]
+skips = ["B101", "B301", "B601"]
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+exclude = [
+  '^file1\.py$',  # TOML literal string (single-quotes, no escaping necessary)
+  "^file2\\.py$", # TOML basic string (double-quotes, backslash and other characters need escaping)
+]
+
+[tool.pylint.main]
+# Specify a score threshold under which the program will exit with error.
+fail-under = 10
+
+# Files or directories to be skipped. They should be base names, not paths.
+ignore = [
+    ".venv",
+    ".git",
+    "__pycache__",
+    "dist",
+    "build",
+    ".mypy_cache",
+    ".pytest_cache"
+]
+
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
+# number of processors available to use, and will cap the count on Windows to
+# avoid hangs.
+jobs = 0
+
+# Minimum Python version to use for version dependent checks. Will default to the
+# version used to run pylint.
+py-version = "3.12"
+
+[tool.pylint."messages control"]
+# Disable the message, report, category or checker with the given id(s). You can
+# either give multiple identifiers separated by comma (,) or put this option
+# multiple times (only on the command line, not in the configuration file where
+# it should appear only once). You can also use "--disable=all" to disable
+# everything first and then re-enable specific checks. For example, if you want
+# to run only the similarities checker, you can use "--disable=all
+# --enable=similarities". If you want to run only the classes checker, but have
+# no Warning level messages displayed, use "--disable=all --enable=classes
+# --disable=W".
+disable = [
+    "W", "C", "R"
+]
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where it
+# should appear only once). See also the "--disable" option for examples.
+enable = ["E"]
+
+[tool.pylint.reports]
+# Set the output format. Available formats are: 'text', 'parseable', 'colorized',
+# 'json2' (improved json format), 'json' (old json format), msvs (visual studio)
+# and 'github' (GitHub actions). You can also give a reporter class, e.g.
+# mypackage.mymodule.MyReporterClass.
+output-format = "colorized"
