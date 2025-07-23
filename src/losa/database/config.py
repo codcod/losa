@@ -14,38 +14,38 @@ class DatabaseConfig:
 
     def __init__(self):
         # Database connection parameters
-        self.db_host = os.getenv("DB_HOST", "localhost")
-        self.db_port = os.getenv("DB_PORT", "5432")
-        self.db_name = os.getenv("DB_NAME", "losa")
-        self.db_user = os.getenv("DB_USER", "losa_user")
-        self.db_password = os.getenv("DB_PASSWORD", "losa_password")
+        self.db_host = os.getenv('DB_HOST', 'localhost')
+        self.db_port = os.getenv('DB_PORT', '5432')
+        self.db_name = os.getenv('DB_NAME', 'losa')
+        self.db_user = os.getenv('DB_USER', 'losa_user')
+        self.db_password = os.getenv('DB_PASSWORD', 'losa_password')
 
         # Connection pool settings
-        self.pool_size = int(os.getenv("DB_POOL_SIZE", "10"))
-        self.max_overflow = int(os.getenv("DB_MAX_OVERFLOW", "20"))
-        self.pool_timeout = int(os.getenv("DB_POOL_TIMEOUT", "30"))
-        self.pool_recycle = int(os.getenv("DB_POOL_RECYCLE", "3600"))
+        self.pool_size = int(os.getenv('DB_POOL_SIZE', '10'))
+        self.max_overflow = int(os.getenv('DB_MAX_OVERFLOW', '20'))
+        self.pool_timeout = int(os.getenv('DB_POOL_TIMEOUT', '30'))
+        self.pool_recycle = int(os.getenv('DB_POOL_RECYCLE', '3600'))
 
         # SSL settings
-        self.ssl_mode = os.getenv("DB_SSL_MODE", "disable")
+        self.ssl_mode = os.getenv('DB_SSL_MODE', 'disable')
 
         # Debug settings
-        self.echo_sql = os.getenv("DB_ECHO", "false").lower() == "true"
+        self.echo_sql = os.getenv('DB_ECHO', 'false').lower() == 'true'
 
     @property
     def sync_database_url(self) -> str:
         """Get synchronous database URL"""
-        url = f"postgresql://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
-        if self.ssl_mode != "disable":
-            url += f"?sslmode={self.ssl_mode}"
+        url = f'postgresql://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}'
+        if self.ssl_mode != 'disable':
+            url += f'?sslmode={self.ssl_mode}'
         return url
 
     @property
     def async_database_url(self) -> str:
         """Get asynchronous database URL"""
-        url = f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
-        if self.ssl_mode != "disable":
-            url += f"?ssl={self.ssl_mode}"
+        url = f'postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}'
+        if self.ssl_mode != 'disable':
+            url += f'?ssl={self.ssl_mode}'
         return url
 
 
@@ -162,7 +162,7 @@ def check_database_connection() -> bool:
     """Check if database connection is working"""
     try:
         with get_sync_session() as session:
-            session.execute(text("SELECT 1"))
+            session.execute(text('SELECT 1'))
             return True
     except Exception:
         return False
@@ -172,7 +172,7 @@ async def check_async_database_connection() -> bool:
     """Check if async database connection is working"""
     try:
         async with get_async_session() as session:
-            await session.execute(text("SELECT 1"))
+            await session.execute(text('SELECT 1'))
             return True
     except Exception:
         return False
@@ -187,12 +187,12 @@ def get_current_schema_version() -> str:
         with get_sync_session() as session:
             result = session.execute(
                 text(
-                    "SELECT version_num FROM alembic_version ORDER BY version_num DESC LIMIT 1"
+                    'SELECT version_num FROM alembic_version ORDER BY version_num DESC LIMIT 1'
                 )
             ).fetchone()
-            return result[0] if result else "none"
+            return result[0] if result else 'none'
     except Exception:
-        return "unknown"
+        return 'unknown'
 
 
 async def get_current_schema_version_async() -> str:
@@ -201,13 +201,13 @@ async def get_current_schema_version_async() -> str:
         async with get_async_session() as session:
             result = await session.execute(
                 text(
-                    "SELECT version_num FROM alembic_version ORDER BY version_num DESC LIMIT 1"
+                    'SELECT version_num FROM alembic_version ORDER BY version_num DESC LIMIT 1'
                 )
             )
             row = result.fetchone()
-            return row[0] if row else "none"
+            return row[0] if row else 'none'
     except Exception:
-        return "unknown"
+        return 'unknown'
 
 
 # Transaction helpers

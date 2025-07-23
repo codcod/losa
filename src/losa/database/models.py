@@ -47,7 +47,7 @@ class TimestampMixin:
 class LoanApplicationDB(Base, TimestampMixin):
     """Database model for loan applications"""
 
-    __tablename__ = "loan_applications"
+    __tablename__ = 'loan_applications'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     application_number = Column(String(50), unique=True, nullable=False, index=True)
@@ -71,7 +71,7 @@ class LoanApplicationDB(Base, TimestampMixin):
     city = Column(String(100), nullable=False)
     state = Column(String(50), nullable=False)
     zip_code = Column(String(10), nullable=False)
-    country = Column(String(50), nullable=False, default="US")
+    country = Column(String(50), nullable=False, default='US')
 
     # Employment Information
     employment_status = Column(SQLEnum(EmploymentStatus), nullable=False)
@@ -128,16 +128,16 @@ class LoanApplicationDB(Base, TimestampMixin):
 
     # Relationships
     documents = relationship(
-        "DocumentDB", back_populates="application", cascade="all, delete-orphan"
+        'DocumentDB', back_populates='application', cascade='all, delete-orphan'
     )
     credit_scores = relationship(
-        "CreditScoreDB", back_populates="application", cascade="all, delete-orphan"
+        'CreditScoreDB', back_populates='application', cascade='all, delete-orphan'
     )
     risk_assessments = relationship(
-        "RiskAssessmentDB", back_populates="application", cascade="all, delete-orphan"
+        'RiskAssessmentDB', back_populates='application', cascade='all, delete-orphan'
     )
     audit_logs = relationship(
-        "AuditLogDB", back_populates="application", cascade="all, delete-orphan"
+        'AuditLogDB', back_populates='application', cascade='all, delete-orphan'
     )
 
     # Indexes for common queries
@@ -148,18 +148,18 @@ class LoanApplicationDB(Base, TimestampMixin):
     )
 
     def __repr__(self):
-        return f"<LoanApplication(id={self.id}, number={self.application_number}, status={self.status})>"
+        return f'<LoanApplication(id={self.id}, number={self.application_number}, status={self.status})>'
 
 
 class DocumentDB(Base, TimestampMixin):
     """Database model for uploaded documents"""
 
-    __tablename__ = "documents"
+    __tablename__ = 'documents'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     application_id = Column(
         UUID(as_uuid=True),
-        ForeignKey("loan_applications.id"),
+        ForeignKey('loan_applications.id'),
         nullable=False,
         index=True,
     )
@@ -182,21 +182,21 @@ class DocumentDB(Base, TimestampMixin):
     confidence_score = Column(Numeric(3, 2), nullable=True)
 
     # Relationship
-    application = relationship("LoanApplicationDB", back_populates="documents")
+    application = relationship('LoanApplicationDB', back_populates='documents')
 
     def __repr__(self):
-        return f"<Document(id={self.id}, type={self.document_type}, verified={self.verified})>"
+        return f'<Document(id={self.id}, type={self.document_type}, verified={self.verified})>'
 
 
 class CreditScoreDB(Base, TimestampMixin):
     """Database model for credit scores"""
 
-    __tablename__ = "credit_scores"
+    __tablename__ = 'credit_scores'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     application_id = Column(
         UUID(as_uuid=True),
-        ForeignKey("loan_applications.id"),
+        ForeignKey('loan_applications.id'),
         nullable=False,
         index=True,
     )
@@ -212,21 +212,21 @@ class CreditScoreDB(Base, TimestampMixin):
     public_records = Column(JSON, nullable=True)
 
     # Relationship
-    application = relationship("LoanApplicationDB", back_populates="credit_scores")
+    application = relationship('LoanApplicationDB', back_populates='credit_scores')
 
     def __repr__(self):
-        return f"<CreditScore(id={self.id}, score={self.score}, bureau={self.bureau})>"
+        return f'<CreditScore(id={self.id}, score={self.score}, bureau={self.bureau})>'
 
 
 class RiskAssessmentDB(Base, TimestampMixin):
     """Database model for risk assessments"""
 
-    __tablename__ = "risk_assessments"
+    __tablename__ = 'risk_assessments'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     application_id = Column(
         UUID(as_uuid=True),
-        ForeignKey("loan_applications.id"),
+        ForeignKey('loan_applications.id'),
         nullable=False,
         index=True,
     )
@@ -244,21 +244,21 @@ class RiskAssessmentDB(Base, TimestampMixin):
     model_features = Column(JSON, nullable=True)
 
     # Relationship
-    application = relationship("LoanApplicationDB", back_populates="risk_assessments")
+    application = relationship('LoanApplicationDB', back_populates='risk_assessments')
 
     def __repr__(self):
-        return f"<RiskAssessment(id={self.id}, score={self.overall_risk_score}, level={self.risk_level})>"
+        return f'<RiskAssessment(id={self.id}, score={self.overall_risk_score}, level={self.risk_level})>'
 
 
 class AuditLogDB(Base, TimestampMixin):
     """Database model for audit logs"""
 
-    __tablename__ = "audit_logs"
+    __tablename__ = 'audit_logs'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     application_id = Column(
         UUID(as_uuid=True),
-        ForeignKey("loan_applications.id"),
+        ForeignKey('loan_applications.id'),
         nullable=False,
         index=True,
     )
@@ -277,16 +277,16 @@ class AuditLogDB(Base, TimestampMixin):
     notes = Column(Text, nullable=True)
 
     # Relationship
-    application = relationship("LoanApplicationDB", back_populates="audit_logs")
+    application = relationship('LoanApplicationDB', back_populates='audit_logs')
 
     def __repr__(self):
-        return f"<AuditLog(id={self.id}, action={self.action}, user={self.user_id})>"
+        return f'<AuditLog(id={self.id}, action={self.action}, user={self.user_id})>'
 
 
 class UnderwriterDB(Base, TimestampMixin):
     """Database model for underwriters"""
 
-    __tablename__ = "underwriters"
+    __tablename__ = 'underwriters'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     employee_id = Column(String(50), unique=True, nullable=False, index=True)
@@ -312,13 +312,13 @@ class UnderwriterDB(Base, TimestampMixin):
     max_workload = Column(Integer, nullable=False, default=20)
 
     def __repr__(self):
-        return f"<Underwriter(id={self.id}, name={self.first_name} {self.last_name})>"
+        return f'<Underwriter(id={self.id}, name={self.first_name} {self.last_name})>'
 
 
 class ConfigurationDB(Base, TimestampMixin):
     """Database model for system configuration"""
 
-    __tablename__ = "configurations"
+    __tablename__ = 'configurations'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
 
@@ -344,7 +344,7 @@ class ConfigurationDB(Base, TimestampMixin):
     )
 
     def __repr__(self):
-        return f"<Configuration(category={self.category}, key={self.key})>"
+        return f'<Configuration(category={self.category}, key={self.key})>'
 
 
 # Helper functions for common queries
@@ -433,7 +433,7 @@ def create_audit_log(
     application_id: str,
     action: str,
     user_id: Optional[str] = None,
-    user_type: Optional[str] = "system",
+    user_type: Optional[str] = 'system',
     old_values: Optional[dict] = None,
     new_values: Optional[dict] = None,
     notes: Optional[str] = None,

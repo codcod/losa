@@ -7,48 +7,48 @@ from uuid import UUID, uuid4
 
 
 class LoanType(str, Enum):
-    PERSONAL = "personal"
-    AUTO = "auto"
-    HOME = "home"
-    BUSINESS = "business"
-    STUDENT = "student"
+    PERSONAL = 'personal'
+    AUTO = 'auto'
+    HOME = 'home'
+    BUSINESS = 'business'
+    STUDENT = 'student'
 
 
 class LoanStatus(str, Enum):
-    DRAFT = "draft"
-    SUBMITTED = "submitted"
-    UNDER_REVIEW = "under_review"
-    DOCUMENTS_REQUIRED = "documents_required"
-    CREDIT_CHECK = "credit_check"
-    APPROVED = "approved"
-    REJECTED = "rejected"
-    FUNDED = "funded"
-    CANCELLED = "cancelled"
+    DRAFT = 'draft'
+    SUBMITTED = 'submitted'
+    UNDER_REVIEW = 'under_review'
+    DOCUMENTS_REQUIRED = 'documents_required'
+    CREDIT_CHECK = 'credit_check'
+    APPROVED = 'approved'
+    REJECTED = 'rejected'
+    FUNDED = 'funded'
+    CANCELLED = 'cancelled'
 
 
 class EmploymentStatus(str, Enum):
-    EMPLOYED = "employed"
-    SELF_EMPLOYED = "self_employed"
-    UNEMPLOYED = "unemployed"
-    RETIRED = "retired"
-    STUDENT = "student"
+    EMPLOYED = 'employed'
+    SELF_EMPLOYED = 'self_employed'
+    UNEMPLOYED = 'unemployed'
+    RETIRED = 'retired'
+    STUDENT = 'student'
 
 
 class MaritalStatus(str, Enum):
-    SINGLE = "single"
-    MARRIED = "married"
-    DIVORCED = "divorced"
-    WIDOWED = "widowed"
+    SINGLE = 'single'
+    MARRIED = 'married'
+    DIVORCED = 'divorced'
+    WIDOWED = 'widowed'
 
 
 class DocumentType(str, Enum):
-    IDENTITY = "identity"
-    INCOME_PROOF = "income_proof"
-    EMPLOYMENT_VERIFICATION = "employment_verification"
-    BANK_STATEMENT = "bank_statement"
-    TAX_RETURN = "tax_return"
-    COLLATERAL_DOCUMENT = "collateral_document"
-    OTHER = "other"
+    IDENTITY = 'identity'
+    INCOME_PROOF = 'income_proof'
+    EMPLOYMENT_VERIFICATION = 'employment_verification'
+    BANK_STATEMENT = 'bank_statement'
+    TAX_RETURN = 'tax_return'
+    COLLATERAL_DOCUMENT = 'collateral_document'
+    OTHER = 'other'
 
 
 class Address(BaseModel):
@@ -56,7 +56,7 @@ class Address(BaseModel):
     city: str
     state: str
     zip_code: str = Field(..., pattern=r'^\d{5}(-\d{4})?$')
-    country: str = "US"
+    country: str = 'US'
 
 
 class PersonalInfo(BaseModel):

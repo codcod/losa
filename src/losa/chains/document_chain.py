@@ -46,7 +46,7 @@ class DocumentAnalysisChain:
     """Chain for analyzing uploaded documents"""
 
     def __init__(self, llm: Optional[ChatOpenAI] = None):
-        self.llm = llm or ChatOpenAI(model="gpt-4", temperature=0.1)
+        self.llm = llm or ChatOpenAI(model='gpt-4', temperature=0.1)
 
         # Document analysis prompt
         self.analysis_prompt = ChatPromptTemplate.from_template(
@@ -113,10 +113,10 @@ class DocumentAnalysisChain:
 
         result = await self.chain.ainvoke(
             {
-                "document_type": document.document_type.value,
-                "file_name": document.file_name,
-                "file_size": document.file_size,
-                "document_content": document_content,
+                'document_type': document.document_type.value,
+                'file_name': document.file_name,
+                'file_size': document.file_size,
+                'document_content': document_content,
             }
         )
 
@@ -139,7 +139,7 @@ class IncomeVerificationChain:
     """Chain for verifying income from multiple sources"""
 
     def __init__(self, llm: Optional[ChatOpenAI] = None):
-        self.llm = llm or ChatOpenAI(model="gpt-4", temperature=0.1)
+        self.llm = llm or ChatOpenAI(model='gpt-4', temperature=0.1)
 
         self.verification_prompt = ChatPromptTemplate.from_template(
             """
@@ -198,24 +198,24 @@ class IncomeVerificationChain:
         """Verify income based on documents and declared information"""
 
         # Format document analyses for the prompt
-        doc_analysis_text = "\n".join(
+        doc_analysis_text = '\n'.join(
             [
-                f"Document {i+1} ({analysis.document_type}):\n"
-                f"- Valid: {analysis.is_valid}\n"
-                f"- Extracted Data: {analysis.extracted_data}\n"
-                f"- Issues: {analysis.issues_found}\n"
-                f"- Confidence: {analysis.confidence_score}\n"
+                f'Document {i + 1} ({analysis.document_type}):\n'
+                f'- Valid: {analysis.is_valid}\n'
+                f'- Extracted Data: {analysis.extracted_data}\n'
+                f'- Issues: {analysis.issues_found}\n'
+                f'- Confidence: {analysis.confidence_score}\n'
                 for i, analysis in enumerate(document_analyses)
             ]
         )
 
         result = await self.chain.ainvoke(
             {
-                "declared_annual_income": declared_annual_income,
-                "declared_monthly_income": declared_monthly_income,
-                "employment_status": employment_status,
-                "employer_name": employer_name or "Not provided",
-                "document_analyses": doc_analysis_text,
+                'declared_annual_income': declared_annual_income,
+                'declared_monthly_income': declared_monthly_income,
+                'employment_status': employment_status,
+                'employer_name': employer_name or 'Not provided',
+                'document_analyses': doc_analysis_text,
             }
         )
 
@@ -226,7 +226,7 @@ class CreditAnalysisChain:
     """Chain for comprehensive credit analysis and loan decision support"""
 
     def __init__(self, llm: Optional[ChatOpenAI] = None):
-        self.llm = llm or ChatOpenAI(model="gpt-4", temperature=0.1)
+        self.llm = llm or ChatOpenAI(model='gpt-4', temperature=0.1)
 
         self.analysis_prompt = ChatPromptTemplate.from_template(
             """
@@ -302,36 +302,36 @@ class CreditAnalysisChain:
         """Perform comprehensive credit analysis"""
 
         # Format document summary
-        doc_summary = "Document Verification Summary:\n"
+        doc_summary = 'Document Verification Summary:\n'
         for i, analysis in enumerate(document_analyses):
-            doc_summary += f"- {analysis.document_type}: {'✓ Verified' if analysis.is_valid else '✗ Issues found'} "
-            doc_summary += f"(Confidence: {analysis.confidence_score:.1%})\n"
+            doc_summary += f'- {analysis.document_type}: {"✓ Verified" if analysis.is_valid else "✗ Issues found"} '
+            doc_summary += f'(Confidence: {analysis.confidence_score:.1%})\n'
 
         result = await self.chain.ainvoke(
             {
-                "applicant_name": application_data.get("applicant_name", "Unknown"),
-                "age": application_data.get("age", "Unknown"),
-                "employment_status": application_data.get(
-                    "employment_status", "Unknown"
+                'applicant_name': application_data.get('applicant_name', 'Unknown'),
+                'age': application_data.get('age', 'Unknown'),
+                'employment_status': application_data.get(
+                    'employment_status', 'Unknown'
                 ),
-                "employer": application_data.get("employer", "Unknown"),
-                "annual_income": income_verification.annual_income,
-                "monthly_income": income_verification.monthly_income,
-                "income_verified": income_verification.verification_confidence > 0.8,
-                "loan_type": application_data.get("loan_type", "Unknown"),
-                "requested_amount": application_data.get("requested_amount", 0),
-                "requested_term": application_data.get("requested_term", 0),
-                "loan_purpose": application_data.get("loan_purpose", "Not specified"),
-                "credit_score": application_data.get("credit_score", 0),
-                "dti_ratio": application_data.get("dti_ratio", 0),
-                "monthly_debt": application_data.get("monthly_debt", 0),
-                "monthly_housing": application_data.get("monthly_housing", 0),
-                "savings": application_data.get("savings", 0),
-                "assets": application_data.get("assets", 0),
-                "risk_score": application_data.get("risk_score", 0),
-                "risk_level": application_data.get("risk_level", "Unknown"),
-                "risk_factors": application_data.get("risk_factors", []),
-                "document_summary": doc_summary,
+                'employer': application_data.get('employer', 'Unknown'),
+                'annual_income': income_verification.annual_income,
+                'monthly_income': income_verification.monthly_income,
+                'income_verified': income_verification.verification_confidence > 0.8,
+                'loan_type': application_data.get('loan_type', 'Unknown'),
+                'requested_amount': application_data.get('requested_amount', 0),
+                'requested_term': application_data.get('requested_term', 0),
+                'loan_purpose': application_data.get('loan_purpose', 'Not specified'),
+                'credit_score': application_data.get('credit_score', 0),
+                'dti_ratio': application_data.get('dti_ratio', 0),
+                'monthly_debt': application_data.get('monthly_debt', 0),
+                'monthly_housing': application_data.get('monthly_housing', 0),
+                'savings': application_data.get('savings', 0),
+                'assets': application_data.get('assets', 0),
+                'risk_score': application_data.get('risk_score', 0),
+                'risk_level': application_data.get('risk_level', 'Unknown'),
+                'risk_factors': application_data.get('risk_factors', []),
+                'document_summary': doc_summary,
             }
         )
 
@@ -342,7 +342,7 @@ class LoanExplanationChain:
     """Chain for generating loan decision explanations"""
 
     def __init__(self, llm: Optional[ChatOpenAI] = None):
-        self.llm = llm or ChatOpenAI(model="gpt-4", temperature=0.3)
+        self.llm = llm or ChatOpenAI(model='gpt-4', temperature=0.3)
 
         self.explanation_prompt = ChatPromptTemplate.from_template(
             """
@@ -387,27 +387,27 @@ class LoanExplanationChain:
 # Factory functions for creating chains with different configurations
 
 
-def create_document_analysis_chain(model_name: str = "gpt-4") -> DocumentAnalysisChain:
+def create_document_analysis_chain(model_name: str = 'gpt-4') -> DocumentAnalysisChain:
     """Create a document analysis chain with specified model"""
     llm = ChatOpenAI(model=model_name, temperature=0.1)
     return DocumentAnalysisChain(llm)
 
 
 def create_income_verification_chain(
-    model_name: str = "gpt-4",
+    model_name: str = 'gpt-4',
 ) -> IncomeVerificationChain:
     """Create an income verification chain with specified model"""
     llm = ChatOpenAI(model=model_name, temperature=0.1)
     return IncomeVerificationChain(llm)
 
 
-def create_credit_analysis_chain(model_name: str = "gpt-4") -> CreditAnalysisChain:
+def create_credit_analysis_chain(model_name: str = 'gpt-4') -> CreditAnalysisChain:
     """Create a credit analysis chain with specified model"""
     llm = ChatOpenAI(model=model_name, temperature=0.1)
     return CreditAnalysisChain(llm)
 
 
-def create_explanation_chain(model_name: str = "gpt-4") -> LoanExplanationChain:
+def create_explanation_chain(model_name: str = 'gpt-4') -> LoanExplanationChain:
     """Create a loan explanation chain with specified model"""
     llm = ChatOpenAI(model=model_name, temperature=0.3)
     return LoanExplanationChain(llm)
@@ -417,7 +417,7 @@ def create_explanation_chain(model_name: str = "gpt-4") -> LoanExplanationChain:
 class CompleteDocumentProcessingChain:
     """Composite chain that handles complete document processing workflow"""
 
-    def __init__(self, model_name: str = "gpt-4"):
+    def __init__(self, model_name: str = 'gpt-4'):
         self.document_chain = create_document_analysis_chain(model_name)
         self.income_chain = create_income_verification_chain(model_name)
         self.credit_chain = create_credit_analysis_chain(model_name)
@@ -438,10 +438,10 @@ class CompleteDocumentProcessingChain:
 
         # Step 2: Verify income from relevant documents
         income_verification = await self.income_chain.verify_income(
-            application_data["declared_annual_income"],
-            application_data["declared_monthly_income"],
-            application_data["employment_status"],
-            application_data["employer_name"],
+            application_data['declared_annual_income'],
+            application_data['declared_monthly_income'],
+            application_data['employment_status'],
+            application_data['employer_name'],
             document_analyses,
         )
 
@@ -453,22 +453,22 @@ class CompleteDocumentProcessingChain:
         # Step 4: Generate explanation
         explanation = await self.explanation_chain.generate_explanation(
             {
-                "decision": credit_analysis.recommended_decision,
-                "requested_amount": application_data["requested_amount"],
-                "approved_amount": credit_analysis.recommended_loan_amount,
-                "interest_rate": credit_analysis.recommended_interest_rate or 0,
-                "term": application_data["requested_term"],
-                "credit_score": application_data["credit_score"],
-                "dti_ratio": application_data["dti_ratio"],
-                "risk_factors": credit_analysis.risk_factors,
-                "positive_factors": credit_analysis.positive_factors,
-                "conditions": credit_analysis.additional_requirements,
+                'decision': credit_analysis.recommended_decision,
+                'requested_amount': application_data['requested_amount'],
+                'approved_amount': credit_analysis.recommended_loan_amount,
+                'interest_rate': credit_analysis.recommended_interest_rate or 0,
+                'term': application_data['requested_term'],
+                'credit_score': application_data['credit_score'],
+                'dti_ratio': application_data['dti_ratio'],
+                'risk_factors': credit_analysis.risk_factors,
+                'positive_factors': credit_analysis.positive_factors,
+                'conditions': credit_analysis.additional_requirements,
             }
         )
 
         return {
-            "document_analyses": document_analyses,
-            "income_verification": income_verification,
-            "credit_analysis": credit_analysis,
-            "explanation": explanation,
+            'document_analyses': document_analyses,
+            'income_verification': income_verification,
+            'credit_analysis': credit_analysis,
+            'explanation': explanation,
         }

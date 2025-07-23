@@ -62,7 +62,7 @@ class LoanService:
                 city=db_app.employer_city,
                 state=db_app.employer_state,
                 zip_code=db_app.employer_zip,
-                country="US",
+                country='US',
             )
 
         # Create personal info
@@ -169,7 +169,7 @@ class LoanService:
                 conditions=db_app.conditions or [],
                 rejection_reasons=db_app.rejection_reasons or [],
                 decision_date=db_app.decision_date,
-                decision_maker=db_app.decision_maker or "System",
+                decision_maker=db_app.decision_maker or 'System',
                 confidence_score=(
                     float(db_app.confidence_score) if db_app.confidence_score else 0.0
                 ),
@@ -200,59 +200,59 @@ class LoanService:
     def _convert_pydantic_to_db(self, application: LoanApplication) -> Dict[str, Any]:
         """Convert Pydantic model to database fields"""
         data = {
-            "application_number": application.application_number,
-            "status": application.status,
-            "first_name": application.personal_info.first_name,
-            "last_name": application.personal_info.last_name,
-            "middle_name": application.personal_info.middle_name,
-            "date_of_birth": application.personal_info.date_of_birth,
-            "ssn": application.personal_info.ssn,
-            "phone": application.personal_info.phone,
-            "email": application.personal_info.email,
-            "marital_status": application.personal_info.marital_status,
-            "dependents": application.personal_info.dependents,
-            "street": application.personal_info.address.street,
-            "city": application.personal_info.address.city,
-            "state": application.personal_info.address.state,
-            "zip_code": application.personal_info.address.zip_code,
-            "country": application.personal_info.address.country,
-            "employment_status": application.employment_info.status,
-            "employer_name": application.employment_info.employer_name,
-            "job_title": application.employment_info.job_title,
-            "employment_start_date": application.employment_info.employment_start_date,
-            "annual_income": application.employment_info.annual_income,
-            "monthly_income": application.employment_info.monthly_income,
-            "other_income": application.employment_info.other_income,
-            "monthly_rent_mortgage": application.financial_info.monthly_rent_mortgage,
-            "monthly_debt_payments": application.financial_info.monthly_debt_payments,
-            "monthly_expenses": application.financial_info.monthly_expenses,
-            "savings_balance": application.financial_info.savings_balance,
-            "checking_balance": application.financial_info.checking_balance,
-            "credit_cards_debt": application.financial_info.credit_cards_debt,
-            "assets_value": application.financial_info.assets_value,
-            "existing_loans": application.financial_info.existing_loans,
-            "loan_type": application.loan_details.loan_type,
-            "requested_amount": application.loan_details.requested_amount,
-            "requested_term_months": application.loan_details.requested_term_months,
-            "purpose": application.loan_details.purpose,
-            "collateral_description": application.loan_details.collateral_description,
-            "collateral_value": application.loan_details.collateral_value,
-            "workflow_state": application.workflow_state,
-            "notes": application.notes,
-            "assigned_underwriter": application.assigned_underwriter,
-            "priority_level": application.priority_level,
-            "submitted_at": application.submitted_at,
-            "decision_date": application.decision_date,
+            'application_number': application.application_number,
+            'status': application.status,
+            'first_name': application.personal_info.first_name,
+            'last_name': application.personal_info.last_name,
+            'middle_name': application.personal_info.middle_name,
+            'date_of_birth': application.personal_info.date_of_birth,
+            'ssn': application.personal_info.ssn,
+            'phone': application.personal_info.phone,
+            'email': application.personal_info.email,
+            'marital_status': application.personal_info.marital_status,
+            'dependents': application.personal_info.dependents,
+            'street': application.personal_info.address.street,
+            'city': application.personal_info.address.city,
+            'state': application.personal_info.address.state,
+            'zip_code': application.personal_info.address.zip_code,
+            'country': application.personal_info.address.country,
+            'employment_status': application.employment_info.status,
+            'employer_name': application.employment_info.employer_name,
+            'job_title': application.employment_info.job_title,
+            'employment_start_date': application.employment_info.employment_start_date,
+            'annual_income': application.employment_info.annual_income,
+            'monthly_income': application.employment_info.monthly_income,
+            'other_income': application.employment_info.other_income,
+            'monthly_rent_mortgage': application.financial_info.monthly_rent_mortgage,
+            'monthly_debt_payments': application.financial_info.monthly_debt_payments,
+            'monthly_expenses': application.financial_info.monthly_expenses,
+            'savings_balance': application.financial_info.savings_balance,
+            'checking_balance': application.financial_info.checking_balance,
+            'credit_cards_debt': application.financial_info.credit_cards_debt,
+            'assets_value': application.financial_info.assets_value,
+            'existing_loans': application.financial_info.existing_loans,
+            'loan_type': application.loan_details.loan_type,
+            'requested_amount': application.loan_details.requested_amount,
+            'requested_term_months': application.loan_details.requested_term_months,
+            'purpose': application.loan_details.purpose,
+            'collateral_description': application.loan_details.collateral_description,
+            'collateral_value': application.loan_details.collateral_value,
+            'workflow_state': application.workflow_state,
+            'notes': application.notes,
+            'assigned_underwriter': application.assigned_underwriter,
+            'priority_level': application.priority_level,
+            'submitted_at': application.submitted_at,
+            'decision_date': application.decision_date,
         }
 
         # Add employer address if available
         if application.employment_info.employer_address:
             data.update(
                 {
-                    "employer_street": application.employment_info.employer_address.street,
-                    "employer_city": application.employment_info.employer_address.city,
-                    "employer_state": application.employment_info.employer_address.state,
-                    "employer_zip": application.employment_info.employer_address.zip_code,
+                    'employer_street': application.employment_info.employer_address.street,
+                    'employer_city': application.employment_info.employer_address.city,
+                    'employer_state': application.employment_info.employer_address.state,
+                    'employer_zip': application.employment_info.employer_address.zip_code,
                 }
             )
 
@@ -260,14 +260,14 @@ class LoanService:
         if application.decision:
             data.update(
                 {
-                    "decision": application.decision.decision,
-                    "approved_amount": application.decision.approved_amount,
-                    "approved_term_months": application.decision.approved_term_months,
-                    "interest_rate": application.decision.interest_rate,
-                    "conditions": application.decision.conditions,
-                    "rejection_reasons": application.decision.rejection_reasons,
-                    "decision_maker": application.decision.decision_maker,
-                    "confidence_score": application.decision.confidence_score,
+                    'decision': application.decision.decision,
+                    'approved_amount': application.decision.approved_amount,
+                    'approved_term_months': application.decision.approved_term_months,
+                    'interest_rate': application.decision.interest_rate,
+                    'conditions': application.decision.conditions,
+                    'rejection_reasons': application.decision.rejection_reasons,
+                    'decision_maker': application.decision.decision_maker,
+                    'confidence_score': application.decision.confidence_score,
                 }
             )
 
@@ -275,9 +275,9 @@ class LoanService:
 
     def generate_application_number(self) -> str:
         """Generate a unique application number"""
-        timestamp = datetime.now().strftime("%Y%m%d")
+        timestamp = datetime.now().strftime('%Y%m%d')
         unique_id = str(uuid4())[:8].upper()
-        return f"LOAN-{timestamp}-{unique_id}"
+        return f'LOAN-{timestamp}-{unique_id}'
 
     def create_application(
         self, application_data: LoanApplicationCreate, user_id: Optional[str] = None
@@ -305,14 +305,14 @@ class LoanService:
             create_audit_log(
                 session=session,
                 application_id=str(db_app.id),
-                action="APPLICATION_CREATED",
+                action='APPLICATION_CREATED',
                 user_id=user_id,
-                user_type="applicant",
+                user_type='applicant',
                 new_values={
-                    "status": "draft",
-                    "amount": float(application.loan_details.requested_amount),
+                    'status': 'draft',
+                    'amount': float(application.loan_details.requested_amount),
                 },
-                notes="New loan application created",
+                notes='New loan application created',
             )
 
             session.commit()
@@ -322,7 +322,7 @@ class LoanService:
             application.created_at = db_app.created_at
             application.updated_at = db_app.updated_at
 
-            logger.info(f"Created loan application {application.application_number}")
+            logger.info(f'Created loan application {application.application_number}')
             return application
 
     def get_application(self, application_id: UUID) -> Optional[LoanApplication]:
@@ -384,20 +384,20 @@ class LoanService:
                 # Update personal info fields
                 update_data.update(
                     {
-                        "first_name": updates.personal_info.first_name,
-                        "last_name": updates.personal_info.last_name,
-                        "middle_name": updates.personal_info.middle_name,
-                        "date_of_birth": updates.personal_info.date_of_birth,
-                        "ssn": updates.personal_info.ssn,
-                        "phone": updates.personal_info.phone,
-                        "email": updates.personal_info.email,
-                        "marital_status": updates.personal_info.marital_status,
-                        "dependents": updates.personal_info.dependents,
-                        "street": updates.personal_info.address.street,
-                        "city": updates.personal_info.address.city,
-                        "state": updates.personal_info.address.state,
-                        "zip_code": updates.personal_info.address.zip_code,
-                        "country": updates.personal_info.address.country,
+                        'first_name': updates.personal_info.first_name,
+                        'last_name': updates.personal_info.last_name,
+                        'middle_name': updates.personal_info.middle_name,
+                        'date_of_birth': updates.personal_info.date_of_birth,
+                        'ssn': updates.personal_info.ssn,
+                        'phone': updates.personal_info.phone,
+                        'email': updates.personal_info.email,
+                        'marital_status': updates.personal_info.marital_status,
+                        'dependents': updates.personal_info.dependents,
+                        'street': updates.personal_info.address.street,
+                        'city': updates.personal_info.address.city,
+                        'state': updates.personal_info.address.state,
+                        'zip_code': updates.personal_info.address.zip_code,
+                        'country': updates.personal_info.address.country,
                     }
                 )
 
@@ -405,13 +405,13 @@ class LoanService:
                 # Update employment info fields
                 update_data.update(
                     {
-                        "employment_status": updates.employment_info.status,
-                        "employer_name": updates.employment_info.employer_name,
-                        "job_title": updates.employment_info.job_title,
-                        "employment_start_date": updates.employment_info.employment_start_date,
-                        "annual_income": updates.employment_info.annual_income,
-                        "monthly_income": updates.employment_info.monthly_income,
-                        "other_income": updates.employment_info.other_income,
+                        'employment_status': updates.employment_info.status,
+                        'employer_name': updates.employment_info.employer_name,
+                        'job_title': updates.employment_info.job_title,
+                        'employment_start_date': updates.employment_info.employment_start_date,
+                        'annual_income': updates.employment_info.annual_income,
+                        'monthly_income': updates.employment_info.monthly_income,
+                        'other_income': updates.employment_info.other_income,
                     }
                 )
 
@@ -419,14 +419,14 @@ class LoanService:
                 # Update financial info fields
                 update_data.update(
                     {
-                        "monthly_rent_mortgage": updates.financial_info.monthly_rent_mortgage,
-                        "monthly_debt_payments": updates.financial_info.monthly_debt_payments,
-                        "monthly_expenses": updates.financial_info.monthly_expenses,
-                        "savings_balance": updates.financial_info.savings_balance,
-                        "checking_balance": updates.financial_info.checking_balance,
-                        "credit_cards_debt": updates.financial_info.credit_cards_debt,
-                        "assets_value": updates.financial_info.assets_value,
-                        "existing_loans": updates.financial_info.existing_loans,
+                        'monthly_rent_mortgage': updates.financial_info.monthly_rent_mortgage,
+                        'monthly_debt_payments': updates.financial_info.monthly_debt_payments,
+                        'monthly_expenses': updates.financial_info.monthly_expenses,
+                        'savings_balance': updates.financial_info.savings_balance,
+                        'checking_balance': updates.financial_info.checking_balance,
+                        'credit_cards_debt': updates.financial_info.credit_cards_debt,
+                        'assets_value': updates.financial_info.assets_value,
+                        'existing_loans': updates.financial_info.existing_loans,
                     }
                 )
 
@@ -434,26 +434,26 @@ class LoanService:
                 # Update loan details fields
                 update_data.update(
                     {
-                        "loan_type": updates.loan_details.loan_type,
-                        "requested_amount": updates.loan_details.requested_amount,
-                        "requested_term_months": updates.loan_details.requested_term_months,
-                        "purpose": updates.loan_details.purpose,
-                        "collateral_description": updates.loan_details.collateral_description,
-                        "collateral_value": updates.loan_details.collateral_value,
+                        'loan_type': updates.loan_details.loan_type,
+                        'requested_amount': updates.loan_details.requested_amount,
+                        'requested_term_months': updates.loan_details.requested_term_months,
+                        'purpose': updates.loan_details.purpose,
+                        'collateral_description': updates.loan_details.collateral_description,
+                        'collateral_value': updates.loan_details.collateral_value,
                     }
                 )
 
             if updates.status:
-                update_data["status"] = updates.status
+                update_data['status'] = updates.status
 
             if updates.notes:
-                update_data["notes"] = updates.notes
+                update_data['notes'] = updates.notes
 
             if updates.assigned_underwriter:
-                update_data["assigned_underwriter"] = updates.assigned_underwriter
+                update_data['assigned_underwriter'] = updates.assigned_underwriter
 
             if updates.priority_level:
-                update_data["priority_level"] = updates.priority_level
+                update_data['priority_level'] = updates.priority_level
 
             # Apply updates
             for key, value in update_data.items():
@@ -463,12 +463,12 @@ class LoanService:
             create_audit_log(
                 session=session,
                 application_id=str(application_id),
-                action="APPLICATION_UPDATED",
+                action='APPLICATION_UPDATED',
                 user_id=user_id,
-                user_type="user",
-                old_values={"status": old_status.value if old_status else None},
-                new_values={"status": updates.status.value if updates.status else None},
-                notes="Application updated",
+                user_type='user',
+                old_values={'status': old_status.value if old_status else None},
+                new_values={'status': updates.status.value if updates.status else None},
+                notes='Application updated',
             )
 
             session.commit()
@@ -486,7 +486,7 @@ class LoanService:
 
         if application.status != LoanStatus.DRAFT:
             raise ValueError(
-                f"Application must be in DRAFT status to submit, current status: {application.status}"
+                f'Application must be in DRAFT status to submit, current status: {application.status}'
             )
 
         # Update status and submission date
@@ -494,18 +494,18 @@ class LoanService:
             session.query(LoanApplicationDB).filter(
                 LoanApplicationDB.id == application_id
             ).update(
-                {"status": LoanStatus.SUBMITTED, "submitted_at": datetime.utcnow()}
+                {'status': LoanStatus.SUBMITTED, 'submitted_at': datetime.utcnow()}
             )
 
             create_audit_log(
                 session=session,
                 application_id=str(application_id),
-                action="APPLICATION_SUBMITTED",
+                action='APPLICATION_SUBMITTED',
                 user_id=user_id,
-                user_type="applicant",
-                old_values={"status": "draft"},
-                new_values={"status": "submitted"},
-                notes="Application submitted for processing",
+                user_type='applicant',
+                old_values={'status': 'draft'},
+                new_values={'status': 'submitted'},
+                notes='Application submitted for processing',
             )
 
             session.commit()
@@ -515,7 +515,7 @@ class LoanService:
         if updated_application:
             # Process through workflow (async in background)
             logger.info(
-                f"Starting workflow processing for application {application.application_number}"
+                f'Starting workflow processing for application {application.application_number}'
             )
 
         return updated_application
@@ -527,7 +527,7 @@ class LoanService:
 
         application = self.get_application(application_id)
         if not application:
-            raise ValueError(f"Application {application_id} not found")
+            raise ValueError(f'Application {application_id} not found')
 
         try:
             # Process through LangGraph workflow
@@ -537,13 +537,13 @@ class LoanService:
             self._save_workflow_results(processed_application)
 
             logger.info(
-                f"Completed workflow processing for application {application.application_number}"
+                f'Completed workflow processing for application {application.application_number}'
             )
             return processed_application
 
         except Exception as e:
             logger.error(
-                f"Error processing application {application.application_number}: {str(e)}"
+                f'Error processing application {application.application_number}: {str(e)}'
             )
 
             # Update status to indicate error
@@ -552,18 +552,18 @@ class LoanService:
                     LoanApplicationDB.id == application_id
                 ).update(
                     {
-                        "status": LoanStatus.UNDER_REVIEW,
-                        "notes": (application.notes or [])
-                        + [f"Processing error: {str(e)}"],
+                        'status': LoanStatus.UNDER_REVIEW,
+                        'notes': (application.notes or [])
+                        + [f'Processing error: {str(e)}'],
                     }
                 )
 
                 create_audit_log(
                     session=session,
                     application_id=str(application_id),
-                    action="WORKFLOW_ERROR",
-                    user_type="system",
-                    notes=f"Workflow processing error: {str(e)}",
+                    action='WORKFLOW_ERROR',
+                    user_type='system',
+                    notes=f'Workflow processing error: {str(e)}',
                 )
 
                 session.commit()
@@ -628,15 +628,15 @@ class LoanService:
             create_audit_log(
                 session=session,
                 application_id=str(application.id),
-                action="WORKFLOW_COMPLETED",
-                user_type="system",
+                action='WORKFLOW_COMPLETED',
+                user_type='system',
                 new_values={
-                    "status": application.status,
-                    "decision": (
+                    'status': application.status,
+                    'decision': (
                         application.decision.decision if application.decision else None
                     ),
                 },
-                notes="Workflow processing completed",
+                notes='Workflow processing completed',
             )
 
             session.commit()
@@ -665,7 +665,7 @@ class LoanService:
                     id=db_app.id,
                     application_number=db_app.application_number,
                     status=db_app.status,
-                    applicant_name=f"{db_app.first_name} {db_app.last_name}",
+                    applicant_name=f'{db_app.first_name} {db_app.last_name}',
                     loan_type=db_app.loan_type,
                     requested_amount=db_app.requested_amount,
                     created_at=db_app.created_at,
@@ -700,7 +700,7 @@ class LoanService:
                     id=db_app.id,
                     application_number=db_app.application_number,
                     status=db_app.status,
-                    applicant_name=f"{db_app.first_name} {db_app.last_name}",
+                    applicant_name=f'{db_app.first_name} {db_app.last_name}',
                     loan_type=db_app.loan_type,
                     requested_amount=db_app.requested_amount,
                     created_at=db_app.created_at,
@@ -735,14 +735,14 @@ class LoanService:
             create_audit_log(
                 session=session,
                 application_id=str(application_id),
-                action="DOCUMENT_UPLOADED",
+                action='DOCUMENT_UPLOADED',
                 user_id=user_id,
-                user_type="applicant",
+                user_type='applicant',
                 new_values={
-                    "document_type": document.document_type.value,
-                    "file_name": document.file_name,
+                    'document_type': document.document_type.value,
+                    'file_name': document.file_name,
                 },
-                notes=f"Document uploaded: {document.file_name}",
+                notes=f'Document uploaded: {document.file_name}',
             )
 
             session.commit()
@@ -771,7 +771,7 @@ class LoanService:
             # Only allow deletion of draft or rejected applications
             if db_app.status not in [LoanStatus.DRAFT, LoanStatus.REJECTED]:
                 raise ValueError(
-                    f"Cannot delete application in status: {db_app.status}"
+                    f'Cannot delete application in status: {db_app.status}'
                 )
 
             db_app.status = LoanStatus.CANCELLED
@@ -779,10 +779,10 @@ class LoanService:
             create_audit_log(
                 session=session,
                 application_id=str(application_id),
-                action="APPLICATION_CANCELLED",
+                action='APPLICATION_CANCELLED',
                 user_id=user_id,
-                user_type="user",
-                notes="Application cancelled/deleted",
+                user_type='user',
+                notes='Application cancelled/deleted',
             )
 
             session.commit()
@@ -801,16 +801,16 @@ class LoanService:
                     .filter(LoanApplicationDB.status == status)
                     .count()
                 )
-                stats[f"status_{status.value}"] = count
+                stats[f'status_{status.value}'] = count
 
             # Count by loan type
-            for loan_type in ["personal", "auto", "home", "business", "student"]:
+            for loan_type in ['personal', 'auto', 'home', 'business', 'student']:
                 count = (
                     session.query(LoanApplicationDB)
                     .filter(LoanApplicationDB.loan_type == loan_type)
                     .count()
                 )
-                stats[f"type_{loan_type}"] = count
+                stats[f'type_{loan_type}'] = count
 
             # Recent applications (last 30 days)
             thirty_days_ago = datetime.utcnow() - timedelta(days=30)
@@ -819,7 +819,7 @@ class LoanService:
                 .filter(LoanApplicationDB.created_at >= thirty_days_ago)
                 .count()
             )
-            stats["recent_applications"] = recent_count
+            stats['recent_applications'] = recent_count
 
             # Average processing time (for completed applications)
             # This would require more complex queries in a real implementation

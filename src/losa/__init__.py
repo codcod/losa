@@ -25,11 +25,11 @@ Usage:
     from losa.models.loan import LoanApplication, LoanApplicationCreate
 """
 
-__version__ = "1.0.0"
-__author__ = "LOSA Development Team"
-__email__ = "dev@losa.com"
+__version__ = '1.0.0'
+__author__ = 'LOSA Development Team'
+__email__ = 'dev@losa.com'
 __description__ = (
-    "AI-powered loan origination system built with LangChain and LangGraph"
+    'AI-powered loan origination system built with LangChain and LangGraph'
 )
 
 # Package-level imports for convenience
@@ -56,27 +56,27 @@ VERSION = tuple(map(int, __version__.split('.')))
 # Package metadata
 __all__ = [
     # Version info
-    "__version__",
-    "__author__",
-    "__email__",
-    "__description__",
-    "VERSION",
+    '__version__',
+    '__author__',
+    '__email__',
+    '__description__',
+    'VERSION',
     # Core models
-    "LoanApplication",
-    "LoanApplicationCreate",
-    "LoanApplicationUpdate",
-    "LoanApplicationSummary",
-    "LoanStatus",
-    "LoanType",
-    "DocumentType",
-    "Document",
-    "CreditScore",
-    "RiskAssessment",
-    "LoanDecision",
+    'LoanApplication',
+    'LoanApplicationCreate',
+    'LoanApplicationUpdate',
+    'LoanApplicationSummary',
+    'LoanStatus',
+    'LoanType',
+    'DocumentType',
+    'Document',
+    'CreditScore',
+    'RiskAssessment',
+    'LoanDecision',
     # Services
-    "LoanService",
+    'LoanService',
     # Database
-    "db_manager",
-    "get_sync_session",
-    "get_async_session",
+    'db_manager',
+    'get_sync_session',
+    'get_async_session',
 ]

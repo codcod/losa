@@ -75,7 +75,7 @@ A comprehensive, AI-powered loan origination system built with LangChain and Lan
    uv venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    uv sync
-   
+
    # Or using pip
    python -m venv .venv
    source .venv/bin/activate
@@ -235,7 +235,7 @@ validate_application → verify_documents → credit_check → risk_assessment �
 Specialized chains handle specific AI tasks:
 
 - **DocumentAnalysisChain** - Analyze uploaded documents
-- **IncomeVerificationChain** - Verify income across sources  
+- **IncomeVerificationChain** - Verify income across sources
 - **CreditAnalysisChain** - Comprehensive credit assessment
 - **LoanExplanationChain** - Generate decision explanations
 
@@ -262,7 +262,7 @@ if processed_app.decision:
 - **loan_applications** - Main application data
 - **documents** - Uploaded document metadata
 - **credit_scores** - Credit bureau results
-- **risk_assessments** - Risk evaluation results  
+- **risk_assessments** - Risk evaluation results
 - **audit_logs** - Complete audit trail
 - **underwriters** - Human review assignments
 
@@ -434,7 +434,7 @@ chmod 755 uploads
 - [ ] Mobile API optimizations
 - [ ] Advanced fraud detection
 
-### Medium Term  
+### Medium Term
 - [ ] Alternative data sources integration
 - [ ] Blockchain document verification
 - [ ] Real-time decision streaming

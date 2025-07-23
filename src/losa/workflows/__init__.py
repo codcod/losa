@@ -26,18 +26,18 @@ from .loan_workflow import (
 
 __all__ = [
     # Main workflow
-    "create_loan_workflow",
-    "process_loan_application",
+    'create_loan_workflow',
+    'process_loan_application',
     # State management
-    "LoanWorkflowState",
-    "WorkflowStatus",
+    'LoanWorkflowState',
+    'WorkflowStatus',
     # Workflow nodes
-    "validate_application_node",
-    "verify_documents_node",
-    "credit_check_node",
-    "risk_assessment_node",
-    "decision_node",
-    "human_review_node",
+    'validate_application_node',
+    'verify_documents_node',
+    'credit_check_node',
+    'risk_assessment_node',
+    'decision_node',
+    'human_review_node',
     # Utilities
-    "should_continue",
+    'should_continue',
 ]

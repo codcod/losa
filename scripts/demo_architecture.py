@@ -20,23 +20,23 @@ Features Demonstrated:
 from datetime import datetime
 
 
-def print_header(title: str, char: str = "="):
+def print_header(title: str, char: str = '='):
     """Print a formatted header"""
-    print(f"\n{char * 70}")
-    print(f"🏦 {title}")
-    print(f"{char * 70}")
+    print(f'\n{char * 70}')
+    print(f'🏦 {title}')
+    print(f'{char * 70}')
 
 
 def print_section(title: str):
     """Print a section header"""
-    print(f"\n{'─' * 50}")
-    print(f"📋 {title}")
-    print(f"{'─' * 50}")
+    print(f'\n{"─" * 50}')
+    print(f'📋 {title}')
+    print(f'{"─" * 50}')
 
 
 def show_system_overview():
     """Display system architecture overview"""
-    print_section("System Architecture Overview")
+    print_section('System Architecture Overview')
 
     print(
         """
@@ -102,62 +102,62 @@ def show_system_overview():
 
 def show_component_details():
     """Show detailed component breakdown"""
-    print_section("Core Components Details")
+    print_section('Core Components Details')
 
     components = {
-        "🎛️ FastAPI Application (main.py)": [
-            "ASGI web framework for high-performance APIs",
-            "Automatic OpenAPI documentation generation",
-            "Built-in request validation and serialization",
-            "Middleware for CORS, security, and logging",
-            "Health checks and monitoring endpoints",
+        '🎛️ FastAPI Application (main.py)': [
+            'ASGI web framework for high-performance APIs',
+            'Automatic OpenAPI documentation generation',
+            'Built-in request validation and serialization',
+            'Middleware for CORS, security, and logging',
+            'Health checks and monitoring endpoints',
         ],
-        "📊 Loan Service (services/loan_service.py)": [
-            "Core business logic for loan operations",
-            "Application lifecycle management",
-            "Document upload and verification",
-            "Integration with workflow engine",
-            "Statistics and reporting functions",
+        '📊 Loan Service (services/loan_service.py)': [
+            'Core business logic for loan operations',
+            'Application lifecycle management',
+            'Document upload and verification',
+            'Integration with workflow engine',
+            'Statistics and reporting functions',
         ],
-        "🔄 LangGraph Workflows (workflows/loan_workflow.py)": [
-            "State-based workflow orchestration",
-            "Conditional logic and branching",
-            "Error handling and recovery",
-            "Human-in-the-loop processing",
-            "Audit trail for all steps",
+        '🔄 LangGraph Workflows (workflows/loan_workflow.py)': [
+            'State-based workflow orchestration',
+            'Conditional logic and branching',
+            'Error handling and recovery',
+            'Human-in-the-loop processing',
+            'Audit trail for all steps',
         ],
-        "🤖 LangChain Chains (chains/document_chain.py)": [
-            "AI-powered document analysis",
-            "Income verification across sources",
-            "Credit assessment and scoring",
-            "Decision explanation generation",
-            "Fraud detection capabilities",
+        '🤖 LangChain Chains (chains/document_chain.py)': [
+            'AI-powered document analysis',
+            'Income verification across sources',
+            'Credit assessment and scoring',
+            'Decision explanation generation',
+            'Fraud detection capabilities',
         ],
-        "📝 Pydantic Models (models/loan.py)": [
-            "Type-safe data structures",
-            "Automatic validation and serialization",
-            "Business rule enforcement",
-            "API contract definitions",
-            "Database schema mapping",
+        '📝 Pydantic Models (models/loan.py)': [
+            'Type-safe data structures',
+            'Automatic validation and serialization',
+            'Business rule enforcement',
+            'API contract definitions',
+            'Database schema mapping',
         ],
-        "🗄️ Database Layer (database/)": [
-            "SQLAlchemy ORM with async support",
-            "Optimized database schema",
-            "Connection pooling and management",
-            "Migration support with Alembic",
-            "Comprehensive audit logging",
+        '🗄️ Database Layer (database/)': [
+            'SQLAlchemy ORM with async support',
+            'Optimized database schema',
+            'Connection pooling and management',
+            'Migration support with Alembic',
+            'Comprehensive audit logging',
         ],
     }
 
     for component, features in components.items():
-        print(f"\n{component}:")
+        print(f'\n{component}:')
         for feature in features:
-            print(f"   • {feature}")
+            print(f'   • {feature}')
 
 
 def show_data_flow():
     """Visualize data flow through the system"""
-    print_section("Data Flow Visualization")
+    print_section('Data Flow Visualization')
 
     print(
         """
@@ -209,56 +209,56 @@ def show_data_flow():
 
 def show_technology_stack():
     """Display the complete technology stack"""
-    print_section("Technology Stack")
+    print_section('Technology Stack')
 
     stack = {
-        "🐍 Backend Framework": {
-            "FastAPI": "Modern async Python web framework",
-            "Uvicorn": "ASGI server for production deployment",
-            "Pydantic": "Data validation and settings management",
-            "SQLAlchemy": "SQL toolkit and ORM",
+        '🐍 Backend Framework': {
+            'FastAPI': 'Modern async Python web framework',
+            'Uvicorn': 'ASGI server for production deployment',
+            'Pydantic': 'Data validation and settings management',
+            'SQLAlchemy': 'SQL toolkit and ORM',
         },
-        "🤖 AI/ML Stack": {
-            "LangChain": "Framework for developing LLM applications",
-            "LangGraph": "Workflow orchestration for complex AI systems",
-            "OpenAI GPT-4": "Large language model for analysis",
-            "Pydantic AI": "Type-safe AI model integration",
+        '🤖 AI/ML Stack': {
+            'LangChain': 'Framework for developing LLM applications',
+            'LangGraph': 'Workflow orchestration for complex AI systems',
+            'OpenAI GPT-4': 'Large language model for analysis',
+            'Pydantic AI': 'Type-safe AI model integration',
         },
-        "🗄️ Data Storage": {
-            "PostgreSQL": "Primary relational database",
-            "Redis": "Caching and session storage",
-            "File System": "Document and media storage",
-            "Alembic": "Database migration tool",
+        '🗄️ Data Storage': {
+            'PostgreSQL': 'Primary relational database',
+            'Redis': 'Caching and session storage',
+            'File System': 'Document and media storage',
+            'Alembic': 'Database migration tool',
         },
-        "🔧 Development Tools": {
-            "uv": "Fast Python package manager",
-            "pytest": "Testing framework",
-            "Docker": "Containerization platform",
-            "Docker Compose": "Multi-container orchestration",
+        '🔧 Development Tools': {
+            'uv': 'Fast Python package manager',
+            'pytest': 'Testing framework',
+            'Docker': 'Containerization platform',
+            'Docker Compose': 'Multi-container orchestration',
         },
-        "📊 Monitoring & Logging": {
-            "Python Logging": "Structured application logging",
-            "Health Checks": "System health monitoring",
-            "Metrics": "Performance and business metrics",
-            "OpenAPI": "API documentation and testing",
+        '📊 Monitoring & Logging': {
+            'Python Logging': 'Structured application logging',
+            'Health Checks': 'System health monitoring',
+            'Metrics': 'Performance and business metrics',
+            'OpenAPI': 'API documentation and testing',
         },
-        "🚀 Deployment": {
-            "Docker": "Production containerization",
-            "Nginx": "Reverse proxy and load balancing",
-            "PostgreSQL": "Production database",
-            "Environment Config": "12-factor app configuration",
+        '🚀 Deployment': {
+            'Docker': 'Production containerization',
+            'Nginx': 'Reverse proxy and load balancing',
+            'PostgreSQL': 'Production database',
+            'Environment Config': '12-factor app configuration',
         },
     }
 
     for category, technologies in stack.items():
-        print(f"\n{category}:")
+        print(f'\n{category}:')
         for tech, description in technologies.items():
-            print(f"   • {tech}: {description}")
+            print(f'   • {tech}: {description}')
 
 
 def show_ai_integration():
     """Demonstrate AI integration architecture"""
-    print_section("AI Integration Architecture")
+    print_section('AI Integration Architecture')
 
     print(
         """
@@ -331,7 +331,7 @@ def show_ai_integration():
 
 def show_deployment_architecture():
     """Show production deployment architecture"""
-    print_section("Production Deployment Architecture")
+    print_section('Production Deployment Architecture')
 
     print(
         """
@@ -393,7 +393,7 @@ def show_deployment_architecture():
 
 def show_security_considerations():
     """Display security architecture"""
-    print_section("Security & Compliance Architecture")
+    print_section('Security & Compliance Architecture')
 
     print(
         """
@@ -459,7 +459,7 @@ def show_security_considerations():
 
 def show_performance_characteristics():
     """Show system performance details"""
-    print_section("Performance & Scalability")
+    print_section('Performance & Scalability')
 
     print(
         """
@@ -508,7 +508,7 @@ def show_performance_characteristics():
 
 def main():
     """Main demonstration function"""
-    print_header("LOSA System Architecture Demonstration")
+    print_header('LOSA System Architecture Demonstration')
 
     print(
         f"""
@@ -552,7 +552,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         # Performance
         show_performance_characteristics()
 
-        print_header("🎉 Architecture Overview Complete!")
+        print_header('🎉 Architecture Overview Complete!')
 
         print(
             """
@@ -593,8 +593,8 @@ modern AI capabilities using LangChain and LangGraph.
         )
 
     except Exception as e:
-        print(f"\n❌ Demo error: {str(e)}")
+        print(f'\n❌ Demo error: {str(e)}')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
